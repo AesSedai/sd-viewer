@@ -4,6 +4,7 @@ import { Settings } from "../types/settings"
 
 interface resultSliceType {
     startingTime: string
+    oldestTime: string
     itemsPerPage: number
     currentPage: number
     images: Settings[][]
@@ -11,8 +12,9 @@ interface resultSliceType {
 
 const initialState: resultSliceType = {
     startingTime: DateTime.now().toISO(),
+    oldestTime: DateTime.now().toISO(),
     itemsPerPage: 250,
-    currentPage: 0,
+    currentPage: -1,
     images: []
 }
 

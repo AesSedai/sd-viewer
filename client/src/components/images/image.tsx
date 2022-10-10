@@ -16,7 +16,7 @@ export const Image = (props: Props): JSX.Element => {
                 display: "block",
                 width: "100%"
             }}
-            // loading="lazy"
+            loading="lazy"
         />
     )
 }
