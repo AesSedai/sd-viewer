@@ -27,6 +27,7 @@ export const useQuery = (query: string, args: args = {}, options: OptionsType = 
     const refetch = useCallback(
         async (refetchArgs: args = {}, newQuery: string = "") => {
             if (isReady) {
+                console.log("sending query", newQuery.length > 0 ? newQuery : query)
                 setStatus("INFLIGHT")
                 const response = (await database?.query(
                     newQuery.length > 0 ? newQuery : query,
@@ -39,6 +40,7 @@ export const useQuery = (query: string, args: args = {}, options: OptionsType = 
                 }>
 
                 if (response.length) {
+                    console.log("response", response)
                     setTime(response[0].time)
 
                     if (response[0].status === "OK") {

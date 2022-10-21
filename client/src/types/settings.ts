@@ -9,9 +9,9 @@ export interface Settings {
     sampler_name?: string
     seed?: number
     target?: string
-    toggles?: number[]
     width?: number
-    time: string
+    time: number
     path: string
+    imgExt: string
     id: string
 }

@@ -44,6 +44,7 @@
         "root": true
     },
     "dependencies": {
+        "async": "^3.2.4",
         "chokidar": "^3.5.3",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
@@ -58,12 +59,15 @@
         "image-data-uri": "^2.0.1",
         "js-yaml": "^4.1.0",
         "jsonwebtoken": "^8.5.1",
+        "luxon": "^3.0.4",
         "morgan": "^1.10.0",
+        "radash": "^8.0.3-alpha.1",
         "socket.io": "^4.5.2",
         "surrealdb.js": "^0.5.0",
         "validator": "^13.7.0"
     },
     "devDependencies": {
+        "@types/async": "^3.2.15",
         "@types/compression": "^1.7.2",
         "@types/cookie-parser": "^1.4.3",
         "@types/cors": "^2.8.12",
@@ -72,6 +76,7 @@
         "@types/helmet": "^4.0.0",
         "@types/hpp": "^0.2.2",
         "@types/js-yaml": "^4.0.5",
+        "@types/luxon": "^3.0.1",
         "@types/morgan": "^1.9.3",
         "@types/node": "^18.8.2",
         "@types/validator": "^13.7.7",

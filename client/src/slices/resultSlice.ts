@@ -1,46 +1,46 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { DateTime } from "luxon"
+import { last } from "radash"
 import { Settings } from "../types/settings"
 
 interface resultSliceType {
-    startingTime: string
-    oldestTime: string
+    startingTime: number
+    oldestTime: number
     itemsPerPage: number
-    currentPage: number
-    images: Settings[][]
+    images: Settings[]
 }
 
 const initialState: resultSliceType = {
-    startingTime: DateTime.now().toISO(),
-    oldestTime: DateTime.now().toISO(),
+    startingTime: DateTime.now().toUTC().toMillis(),
+    oldestTime: DateTime.now().toUTC().toMillis(),
     itemsPerPage: 250,
-    currentPage: -1,
     images: []
 }
 
-interface AddPage {
-    page: number
+interface Push {
     images: Settings[]
-    newCurrentPage?: number
+}
+
+interface Unshift {
+    images: Settings[]
 }
 
 export const resultSlice = createSlice({
     name: "result",
     initialState,
     reducers: {
-        addPage: (state, action: PayloadAction<AddPage>) => {
-            state.images[action.payload.page] = action.payload.images
-            if (action.payload.newCurrentPage != null) {
-                state.currentPage = action.payload.newCurrentPage
-            }
+        push: (state, action: PayloadAction<Push>) => {
+            state.images.push(...action.payload.images)
+            state.oldestTime = last(state.images).time
         },
-        changePage: (state, action: PayloadAction<number>) => {
-            state.currentPage = action.payload
+        unshift: (state, action: PayloadAction<Unshift>) => {
+            state.images.unshift(...action.payload.images)
+            state.startingTime = state.images[0].time
         }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { addPage, changePage } = resultSlice.actions
+export const { push, unshift } = resultSlice.actions
 
 export default resultSlice.reducer

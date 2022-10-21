@@ -19,8 +19,8 @@ export const Detail = (props: Props): JSX.Element => {
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>{item.prompt}</DialogTitle>
             <img
-                src={encodeURI(`http://localhost:4000${item.path.replace(/\.yaml|\.txt/, ".png")}`)}
-                srcSet={encodeURI(`http://localhost:4000${item.path.replace(/\.yaml|\.txt/, ".png")}`)}
+                src={encodeURI(`http://localhost:4000${item.path.replace(/\.yaml|\.txt/, item.imgExt)}`)}
+                srcSet={encodeURI(`http://localhost:4000${item.path.replace(/\.yaml|\.txt/, item.imgExt)}`)}
                 alt={item.prompt}
                 loading="lazy"
             />
@@ -33,7 +33,7 @@ export const Detail = (props: Props): JSX.Element => {
                     Dimensions: {item.width}x{item.height}
                 </Typography>
                 <Typography variant="subtitle1">
-                    Time: {DateTime.fromISO(item.time.replaceAll('"', "")).toLocaleString(DateTime.DATETIME_FULL)}
+                    Time: {DateTime.fromMillis(item.time).toLocaleString(DateTime.DATETIME_FULL)}
                 </Typography>
             </Box>
         </Dialog>

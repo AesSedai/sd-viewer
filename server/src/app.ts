@@ -28,9 +28,9 @@ class App {
         //     this.express.use(cors({ origin: true, credentials: true }))
         // }
         // static content, watched files
+        this.express.use(compression())
         this.express.use("/watch", express.static("/watch"))
 
-        // this.express.use(compression())
         this.express.use(express.json())
         this.express.use(express.urlencoded({ extended: true }))
         this.express.use(cookieParser())
